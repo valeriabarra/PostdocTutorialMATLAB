@@ -272,3 +272,31 @@ imshow(I2)
 figure(11)
 imhist(I2)
 imhist(I2)
+
+%% Bonus!
+% Let's draw some pasta :)
+
+for i = 0 : 80
+    for j = 0 : 80
+        alpha(i+1) = sin((7*i + 16)/40*pi);
+        beta(i+1, j+1) = 7*j/16 + 4*sin(i/80*pi) - alpha(i+1)*sin((10-j)/20*pi);
+        gamma(i+1, j+1) = 10 * cos((i+80)/80*pi) * (sin((j+110)/100*pi))^9;
+        eta(i+1, j+1) = 7*j/16 - 4*sin(i/80*pi) - alpha(i+1)*sin((10-j)/20*pi);
+        jota(i+1, j+1) = 7*j/16 + 4*sin(i/80*pi) - alpha(i+1)*sin((10-j)/20*pi);
+        if 20 <= i && i <= 60
+            Pi(i+1, j+1) = 3*i/8 + 7 * ((sin((i+40)/40*pi))^3) * (sin((j+110)/100*pi))^9;
+        else
+            Pi(i+1, j+1) = 3*i/8 + gamma(i+1, j+1);
+        end
+        if 10 <= j && j <= 70
+            Theta(i+1, j+1) = beta(i+1, j+1) - 8*sin(i/80*pi) * sin((70-j)/120*pi);
+        elseif j < 10
+            Theta(i+1, j+1) = eta(i+1, j+1);
+        else
+            Theta(i+1, j+1) = jota(i+1, j+1);
+        end        
+        Kappa(i+1, j+1) = 3 * sin((i+10)/20*pi) * (sin(j/80*pi))^1.5;
+    end
+end
+
+surf(Pi, Theta, Kappa);
